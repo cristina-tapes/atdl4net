@@ -22,7 +22,9 @@
 using System;
 using System.Linq;
 using Atdl4net.Diagnostics.Exceptions;
+using Atdl4net.Model.Collections;
 using Atdl4net.Model.Controls.Support;
+using Atdl4net.Model.Elements;
 using Atdl4net.Model.Elements.Support;
 using Atdl4net.Model.Enumerations;
 using Atdl4net.Resources;
@@ -95,35 +97,64 @@ namespace Atdl4net.Model.Types.Support
             {
                 _value = ConvertToNativeType(hostParameter, value);
 
-                return ValidateValue(_value, hostParameter.Use == Use_t.Required);
+                return ValidateValue(_value, hostParameter.Use == Use_t.Required, hostParameter.EnumPairs);
             }
             catch (InvalidFieldValueException ex)
             {
                 _log.Error(m => m("Invalid value of type {0} for parameter {1}; exception text: {2}",
                     hostParameter.Type, hostParameter.Name, ex.Message));
 
-                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, HumanReadableTypeName);
+                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, value, HumanReadableTypeName);
             }
             catch (FormatException ex)
             {
                 _log.Error(m => m("Unable to convert value '{0}' to type {1} for parameter {2}; exception text: {3}",
                     value, hostParameter.Type, hostParameter.Name, ex.Message));
 
-                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, HumanReadableTypeName);
+                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, value, HumanReadableTypeName);
             }
             catch (InvalidCastException ex)
             {
                 _log.Error(m => m("Unable to convert value '{0}' to type {1} for parameter {2}; exception text: {3}",
                     value, hostParameter.Type, hostParameter.Name, ex.Message));
 
-                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, HumanReadableTypeName);
+                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, value, HumanReadableTypeName);
             }
             catch (ArgumentException ex)
             {
                 _log.Error(m => m("Unable to convert value '{0}' to type {1} for parameter {2}; exception text: {3}",
                     value, hostParameter.Type, hostParameter.Name, ex.Message));
 
-                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, HumanReadableTypeName);
+                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, value, HumanReadableTypeName);
+            }
+        }
+
+        public ValidationResult ValidateUserValue(string value, IParameter hostParameter)
+        {
+            try
+            {
+                T? convertedValue = ConvertFromWireValueFormat(value);
+                return ValidateValue(convertedValue, hostParameter.Use == Use_t.Required, hostParameter.EnumPairs);
+            }
+            catch (InvalidFieldValueException ex)
+            {
+                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, value, HumanReadableTypeName);
+            }
+            catch (FormatException ex)
+            {
+                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, value, HumanReadableTypeName);
+            }
+            catch (InvalidCastException ex)
+            {
+                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, value, HumanReadableTypeName);
+            }
+            catch (ArgumentException ex)
+            {
+                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, value, HumanReadableTypeName);
+            }
+            catch (OverflowException ex)
+            {
+                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.DataConversionFailure, value, HumanReadableTypeName);
             }
         }
 
@@ -148,7 +179,7 @@ namespace Atdl4net.Model.Types.Support
 
             T? convertedValue = ConvertFromWireValueFormat(value);
 
-            ValidationResult result = ValidateValue(convertedValue, true);
+            ValidationResult result = ValidateValue(convertedValue, true, hostParameter.EnumPairs);
 
             if (result.IsValid)
                 _value = convertedValue;
@@ -169,7 +200,7 @@ namespace Atdl4net.Model.Types.Support
         {
             T? value = ConstValue ?? _value;
 
-            ValidationResult validity = ValidateValue(value, hostParameter.Use == Use_t.Required);
+            ValidationResult validity = ValidateValue(value, hostParameter.Use == Use_t.Required, hostParameter.EnumPairs);
 
             if (!validity.IsValid)
             {
@@ -219,8 +250,9 @@ namespace Atdl4net.Model.Types.Support
         /// </summary>
         /// <param name="value">Value to validate, may be null in which case no validation is applied.</param>
         /// <param name="isRequired">Set to true to check that this parameter is non-null.</param>
+        /// <param name="enumPairs">We need to check that the value is found inside this collection</param>
         /// <returns>Value passed in is returned if it is valid; otherwise an appropriate exception is thrown.</returns>
-        protected abstract ValidationResult ValidateValue(T? value, bool isRequired);
+        protected abstract ValidationResult ValidateValue(T? value, bool isRequired, EnumPairCollection enumPairs);
 
         /// <summary>
         /// Converts the supplied value from string format (as might be used on the FIX wire) into the type of the type

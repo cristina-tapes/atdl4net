@@ -20,6 +20,7 @@
 #endregion
 
 using System;
+using Atdl4net.Model.Collections;
 using Atdl4net.Model.Controls.Support;
 using Atdl4net.Model.Elements.Support;
 using Atdl4net.Model.Reference;
@@ -42,9 +43,10 @@ namespace Atdl4net.Model.Types
         /// is not possible for an IsoCurrencyCode value to be invalid.
         /// </summary>
         /// <param name="value">Value to validate, may be null in which case no validation is applied.</param>
-        /// <param name="isRequired">Set to true to check that this parameter is non-null.</param>
+        /// <param name="isRequired">Set to true to check that this parameter is non-null.</param
+        /// <param name="enumPairs">We need to check that the value is found inside this collection</param>
         /// <returns>ValidationResult indicating whether the supplied value is valid.</returns>
-        protected override ValidationResult ValidateValue(IsoCurrencyCode? value, bool isRequired)
+        protected override ValidationResult ValidateValue(IsoCurrencyCode? value, bool isRequired, EnumPairCollection enumPairs)
         {
             if (isRequired && value == null)
                 return new ValidationResult(ValidationResult.ResultType.Missing, ErrorMessages.NonOptionalParameterNotSupplied2);

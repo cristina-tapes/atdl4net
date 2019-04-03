@@ -23,6 +23,10 @@ using System;
 using Atdl4net.Fix;
 using Atdl4net.Model.Types.Support;
 using Atdl4net.Resources;
+using Atdl4net.Validation;
+using System;
+using System.Collections.Generic;
+using Atdl4net.Model.Collections;
 
 namespace Atdl4net.Model.Types
 {
@@ -49,7 +53,7 @@ namespace Atdl4net.Model.Types
         /// <value>The local market timezone.</value>
         public string LocalMktTz { get; set; }
 
-        private static readonly string[] _formatStrings = new string[] { FixDateTimeFormat.FixDateTime, FixDateTimeFormat.FixDateTimeMs };
+        public static readonly List<string> FormatStrings = new List<string> { FixDateTimeFormat.FixDateTime, FixDateTimeFormat.FixDateTimeMs, FixDateTimeFormat.FixTimeOnly, FixDateTimeFormat.FixTimeOnlyMs };
 
         /// <summary>
         /// Gets the DateTime format strings to use when converting this date/time to a FIX string and vice versa.
@@ -60,8 +64,9 @@ namespace Atdl4net.Model.Types
         /// value is used.</remarks>
         protected override string[] GetDateTimeFormatStrings()
         {
-            return _formatStrings;
+            return FormatStrings.ToArray();
         }
+
         /// <summary>
         /// Gets the human-readable type name for use in error messages shown to the user.
         /// </summary>
@@ -69,6 +74,30 @@ namespace Atdl4net.Model.Types
         protected override string GetHumanReadableTypeName()
         {
             return HumanReadableTypeNames.TimestampType;
+        }
+
+        protected override string MaxValueString()
+        {
+            return MaxValue != null ? MaxValue.Value.ToString(FixDateTimeFormat.FixTimeOnly) : null;
+        }
+
+        protected override string MinValueString()
+        {
+            return MinValue != null ? MinValue.Value.ToString(FixDateTimeFormat.FixTimeOnly) : null;
+        }
+
+        protected override ValidationResult ValidateValue(DateTime? value, bool isRequired, EnumPairCollection enumPairs)
+        {
+            //AMS-231 min/max value validation no longer required
+            if (value != null)
+            {
+                if (value == DateTime.MaxValue)
+                    return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.InvalidDateOrTimeValueUnknown);
+            }
+            else if (isRequired)
+                return new ValidationResult(ValidationResult.ResultType.Missing, ErrorMessages.NonOptionalParameterNotSupplied2);
+
+            return ValidationResult.ValidResult;
         }
     }
 }

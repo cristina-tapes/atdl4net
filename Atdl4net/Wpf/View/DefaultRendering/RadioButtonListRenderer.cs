@@ -19,14 +19,12 @@
 //
 #endregion
 
-using System.ComponentModel.Composition;
 using Atdl4net.Model.Controls;
 using Atdl4net.Wpf.View.Controls;
 using Common.Logging;
 
 namespace Atdl4net.Wpf.View.DefaultRendering
 {
-    [Export(typeof(IWpfControlRenderer<RadioButtonList_t>))]
     internal class RadioButtonListRenderer : IWpfControlRenderer<RadioButtonList_t>
     {
         private static readonly ILog _log = LogManager.GetLogger("Atdl4net.Wpf.View");

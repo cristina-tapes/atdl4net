@@ -134,9 +134,14 @@ namespace Atdl4net.Model.Elements
         /// depending on its concrete type.
         /// </summary>
         /// <param name="visitor">Visitor.</param>
-        internal void DoVisit(IControlVisitor visitor)
+        internal void DoVisit(IWpfControlVisitor visitor)
         {
-            ModelUtils.VisitHelper(typeof(IControlVisitor), visitor, this);
+            ModelUtils.VisitHelper(typeof(IWpfControlVisitor), visitor, this);
+        }
+
+        internal void DoVisit(IWinFormControlVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         #region IValueProvider Members

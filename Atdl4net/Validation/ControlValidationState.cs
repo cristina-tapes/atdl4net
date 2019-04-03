@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Atdl4net.Fix;
+using Atdl4net.Model.Elements;
 using Atdl4net.Wpf.ViewModel;
 using Common.Logging;
 

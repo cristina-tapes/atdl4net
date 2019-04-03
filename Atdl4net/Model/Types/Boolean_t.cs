@@ -74,8 +74,9 @@ namespace Atdl4net.Model.Types
         /// </summary>
         /// <param name="value">Value to validate, may be null in which case no validation is applied.</param>
         /// <param name="isRequired">Set to true to check that this parameter is non-null.</param>
+        /// <param name="enumPairs">We need to check that the value is found inside this collection</param>
         /// <returns>ValidationResult indicating whether the supplied value is valid.</returns>
-        protected override ValidationResult ValidateValue(bool? value, bool isRequired)
+        protected override ValidationResult ValidateValue(bool? value, bool isRequired, EnumPairCollection enumPairs)
         {
             if (isRequired && value == null)
                 return new ValidationResult(ValidationResult.ResultType.Missing, ErrorMessages.NonOptionalParameterNotSupplied2);
@@ -91,8 +92,11 @@ namespace Atdl4net.Model.Types
         /// <returns>Value converted from a string.</returns>
         protected override bool? ConvertFromWireValueFormat(string value)
         {
-            string trueValue = (TrueWireValue != null) ? TrueWireValue : DefaultTrueValue;
-            string falseValue = (FalseWireValue != null) ? FalseWireValue : DefaultFalseValue;
+            if (value == null)
+                return null;
+
+            var trueValue = TrueWireValue ?? DefaultTrueValue;
+            var falseValue = FalseWireValue ?? DefaultFalseValue;
 
             bool? result = null;
 
@@ -101,7 +105,7 @@ namespace Atdl4net.Model.Types
             else if (value == falseValue)
                 result = false;
             else
-                throw ThrowHelper.New<ArgumentException>(this, ErrorMessages.InvalidBooleanValue, value, trueValue, falseValue);
+                throw new ArgumentException(string.Format(ErrorMessages.InvalidBooleanValue, value, trueValue, falseValue));
 
             return result;
         }

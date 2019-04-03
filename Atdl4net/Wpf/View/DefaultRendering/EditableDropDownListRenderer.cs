@@ -19,7 +19,6 @@
 //
 #endregion
 
-using System.ComponentModel.Composition;
 using Atdl4net.Configuration;
 using Atdl4net.Model.Controls;
 using Atdl4net.Wpf.ViewModel;
@@ -27,7 +26,6 @@ using Common.Logging;
 
 namespace Atdl4net.Wpf.View.DefaultRendering
 {
-    [Export(typeof(IWpfControlRenderer<EditableDropDownList_t>))]
     internal class EditableDropDownListRenderer : IWpfControlRenderer<EditableDropDownList_t>
     {
         private static readonly ILog _log = LogManager.GetLogger("Atdl4net.Wpf.View");

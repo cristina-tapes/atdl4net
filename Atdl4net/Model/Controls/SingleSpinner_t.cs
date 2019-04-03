@@ -49,5 +49,7 @@ namespace Atdl4net.Model.Controls
 
         /// <summary>For single spinner control, defines how to determine the increment. Applicable when xsi:type is SingleSpinner_t.</summary>
         public IncrementPolicy_t? IncrementPolicy { get; set; }
+
+        public string ControlInitValue { get; set; }
     }
 }

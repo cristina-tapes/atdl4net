@@ -47,8 +47,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <RepeatButton Name="upButton" Margin="0,1,1,0" Grid.Row="0" FocusVisualStyle="{x:Null}" Background="GhostWhite" 
-                              KeyboardNavigation.IsTabStop="False" Click="upButton_Click" KeyDown="upButton_KeyDown">
+                <RepeatButton Name="upButton" Margin="0,1,1,0" FocusVisualStyle="{x:Null}" Background="GhostWhite"
+                              KeyboardNavigation.IsTabStop="False" Click="upButton_Click" KeyDown="upButton_KeyDown" Height="8" VerticalAlignment="Top">
                     <Path Fill="DarkSlateGray" Data="M 0 4 L 8 4 L 4 0 Z"/>
                 </RepeatButton>
                 <RepeatButton Name="downButton" Margin="0,0,1,1" Grid.Row="1" FocusVisualStyle="{x:Null}" Background="GhostWhite"

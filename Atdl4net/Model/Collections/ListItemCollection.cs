@@ -65,5 +65,14 @@ namespace Atdl4net.Model.Collections
         {
             return item.EnumId;
         }
+
+        public ListItem_t GetItemOrDefault(string key)
+        {
+            if (key == null)
+                return null;
+
+            Dictionary.TryGetValue(key, out var item);
+            return item;
+        }
     }
 }

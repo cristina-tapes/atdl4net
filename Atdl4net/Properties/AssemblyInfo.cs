@@ -1,4 +1,4 @@
-﻿#region Copyright (c) 2010-2012, Cornerstone Technology Limited. http://atdl4net.org
+#region Copyright (c) 2010-2012, Cornerstone Technology Limited. http://atdl4net.org
 //
 //   This software is released under both commercial and open-source licenses.
 //   If you received this software under the commercial license, the terms of that license can be found in the
@@ -7,9 +7,9 @@
 //
 //      This file is part of Atdl4net.
 //
-//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public 
+//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public
 //      License as published by the Free Software Foundation, either version 2.1 of the License, or (at your option) any later version.
-// 
+//
 //      Atdl4net is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 //      of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
 //
@@ -19,6 +19,7 @@
 #endregion
 
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -37,8 +38,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
+[assembly: InternalsVisibleTo("Atdl4netTest")]
+// Setting ComVisible to false makes the types in this assembly not visible
+// to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
@@ -52,6 +54,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.1.0.1082")]
-[assembly: AssemblyFileVersion("1.1.0.1082")]
-
+[assembly: AssemblyVersion("2.0.0.5")]
+[assembly: AssemblyFileVersion("2.0.0.5")]

@@ -34,6 +34,7 @@ using Atdl4net.Resources;
 using Atdl4net.Utility;
 using Atdl4net.Validation;
 using Common.Logging;
+
 #if !NET_40
 using Atdl4net.Model.Controls;
 #endif
@@ -59,7 +60,7 @@ namespace Atdl4net.Wpf.ViewModel
     /// Note that ControlViewModels do not hold value information; the value of each control is always held in the Control_t.
     /// ControlViewModels do however hold the user interface state of each control (i.e., visibility, enabled/disabled).<br/><br/>
     /// Note also that list-based controls use <see cref="ListControlViewModel"/> instead as that class handles the communication
-    /// of the state of list-based WPF to the <see cref="Atdl4net.Model.Types.Support.EnumState"/> type that holds the state of each selectable item
+    /// of the state of list-based WPF to the <see cref="EnumState"/> type that holds the state of each selectable item
     /// within the control.</remarks>
     public class ControlViewModel : INotifyPropertyChanged, INotifyValueChanged, INotifyValueChangeCompleted, IBindable<ViewModelControlCollection>
     {

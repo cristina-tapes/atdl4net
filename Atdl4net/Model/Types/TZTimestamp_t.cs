@@ -59,5 +59,15 @@ namespace Atdl4net.Model.Types
         {
             return HumanReadableTypeNames.TimestampType;
         }
+
+        protected override string MaxValueString()
+        {
+            return MaxValue != null ? MaxValue.Value.ToString(FixDateTimeFormat.FixTimeOnlyWithTz) : null;
+        }
+
+        protected override string MinValueString()
+        {
+            return MinValue != null ? MinValue.Value.ToString(FixDateTimeFormat.FixTimeOnlyWithTz) : null;
+        }
     }
 }

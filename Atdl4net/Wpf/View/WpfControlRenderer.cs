@@ -20,7 +20,6 @@
 #endregion
 
 using System;
-using System.ComponentModel.Composition;
 using Atdl4net.Model.Controls;
 using Atdl4net.Model.Controls.Support;
 using Atdl4net.Model.Elements;
@@ -32,7 +31,7 @@ namespace Atdl4net.Wpf.View
     /// <summary>
     /// Provides XAML rendering of FIXatdl controls.
     /// </summary>
-    public class WpfControlRenderer : IControlVisitor
+    public class WpfControlRenderer : IWpfControlVisitor
     {
         private struct StandardGridCoordinates
         {
@@ -73,67 +72,62 @@ namespace Atdl4net.Wpf.View
 
         /// <summary>Implement NamespaceProvider in order to provide custom XAML namespaces (typically
         /// needed to support use of custom controls).</summary>
-        [Import(typeof(INamespaceProvider))]
+
         public INamespaceProvider NamespaceProvider { get; set; }
 
         /// <summary>Implement CheckBoxListRenderer to provide custom rendering of CheckBoxList_t.</summary>
-        [Import(typeof(IWpfControlRenderer<CheckBoxList_t>))]
+
         public IWpfControlRenderer<CheckBoxList_t> CheckBoxListRenderer { get; set; }
 
         /// <summary>Implement CheckBoxRenderer to provide custom rendering of CheckBox_t.</summary>
-        [Import(typeof(IWpfControlRenderer<CheckBox_t>))]
+
         public IWpfControlRenderer<CheckBox_t> CheckBoxRenderer { get; set; }
 
         /// <summary>Implement ClockRenderer to provide custom rendering of Clock_t.</summary>
-        [Import(typeof(IWpfControlRenderer<Clock_t>))]
+
         public IWpfControlRenderer<Clock_t> ClockRenderer { get; set; }
 
         /// <summary>Implement DoubleSpinnerRenderer to provide custom rendering of DoubleSpinner_t.</summary>
-        [Import(typeof(IWpfControlRenderer<DoubleSpinner_t>))]
+
         public IWpfControlRenderer<DoubleSpinner_t> DoubleSpinnerRenderer { get; set; }
 
         /// <summary>Implement DropDownListRenderer to provide custom rendering of DropDownList_t.</summary>
-        [Import(typeof(IWpfControlRenderer<DropDownList_t>))]
+
         public IWpfControlRenderer<DropDownList_t> DropDownListRenderer { get; set; }
 
         /// <summary>Implement EditableDropDownListRenderer to provide custom rendering of EditableDropDownList_t.</summary>
-        [Import(typeof(IWpfControlRenderer<EditableDropDownList_t>))]
+
         public IWpfControlRenderer<EditableDropDownList_t> EditableDropDownListRenderer { get; set; }
 
         /// <summary>Implement HiddenFieldRenderer to provide custom rendering of HiddenField_t.</summary>
-        [Import(typeof(IWpfControlRenderer<HiddenField_t>))]
+
         public IWpfControlRenderer<HiddenField_t> HiddenFieldRenderer { get; set; }
 
         /// <summary>Implement LabelRenderer to provide custom rendering of Label_t.</summary>
-        [Import(typeof(IWpfControlRenderer<Label_t>))]
+
         public IWpfControlRenderer<Label_t> LabelRenderer { get; set; }
 
         /// <summary>Implement MultiSelectListRenderer to provide custom rendering of MultiSelectList_t.</summary>
-        [Import(typeof(IWpfControlRenderer<MultiSelectList_t>))]
+
         public IWpfControlRenderer<MultiSelectList_t> MultiSelectListRenderer { get; set; }
 
         /// <summary>Implement RadioButtonListRenderer to provide custom rendering of RadioButtonList_t.</summary>
-        [Import(typeof(IWpfControlRenderer<RadioButtonList_t>))]
+
         public IWpfControlRenderer<RadioButtonList_t> RadioButtonListRenderer { get; set; }
 
         /// <summary>Implement RadioButtonRenderer to provide custom rendering of RadioButton_t.</summary>
-        [Import(typeof(IWpfControlRenderer<RadioButton_t>))]
         public IWpfControlRenderer<RadioButton_t> RadioButtonRenderer { get; set; }
 
         /// <summary>Implement SingleSelectListRenderer to provide custom rendering of SingleSelectList_t.</summary>
-        [Import(typeof(IWpfControlRenderer<SingleSelectList_t>))]
         public IWpfControlRenderer<SingleSelectList_t> SingleSelectListRenderer { get; set; }
 
         /// <summary>Implement SingleSpinnerRenderer to provide custom rendering of SingleSpinner_t.</summary>
-        [Import(typeof(IWpfControlRenderer<SingleSpinner_t>))]
         public IWpfControlRenderer<SingleSpinner_t> SingleSpinnerRenderer { get; set; }
 
         /// <summary>Implement SliderRenderer to provide custom rendering of Slider_t.</summary>
-        [Import(typeof(IWpfControlRenderer<Slider_t>))]
         public IWpfControlRenderer<Slider_t> SliderRenderer { get; set; }
 
         /// <summary>Implement TextFieldRenderer to provide custom rendering of TextField_t.</summary>
-        [Import(typeof(IWpfControlRenderer<TextField_t>))]
         public IWpfControlRenderer<TextField_t> TextFieldRenderer { get; set; }
 
         #endregion Imported Control Renderers

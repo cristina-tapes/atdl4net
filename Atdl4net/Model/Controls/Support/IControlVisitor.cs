@@ -36,4 +36,12 @@ namespace Atdl4net.Model.Controls.Support
         /// <param name="control">Control to process as part of this visitor pattern.</param>
         void Visit(Control_t control);
     }
+
+    public interface IWinFormControlVisitor : IControlVisitor
+    {
+    }
+
+    public interface IWpfControlVisitor : IControlVisitor
+    {
+    }
 }

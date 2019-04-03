@@ -26,7 +26,7 @@ using Atdl4net.Xml;
 
 namespace Atdl4net.Providers
 {
-    public class StrategyProvider : IStrategyProvider
+    internal class StrategyProvider : IStrategyProvider
     {
         protected readonly StrategiesReader _strategiesReader = new StrategiesReader();
         protected readonly StrategiesDictionary _strategiesDictionary = new StrategiesDictionary();

@@ -42,10 +42,11 @@ namespace Atdl4net.Model.Types.Support
         /// <param name="isRequired">Set to true to check that this parameter is non-null.</param>
         /// <returns>ValidationResult indicating whether the supplied value is valid.</returns>
         /// <remarks>DateTime.MaxValue (a date and time at the end of the year 9999) is used to indicate an invalid date or time.</remarks>
-        protected override ValidationResult ValidateValue(DateTime? value, bool isRequired)
-        {
-            return base.ValidateValue(GetAdjustedValue(value), isRequired);
-        }
+        /// todo: adjust values when use different timezones
+        //protected override ValidationResult ValidateValue(DateTime? value, bool isRequired)
+        //{
+        //    return base.ValidateValue(GetAdjustedValue(value), isRequired);
+        //}
 
         /// <summary>
         /// Converts the supplied value from string format (as might be used on the FIX wire) into the type of the type
@@ -55,15 +56,11 @@ namespace Atdl4net.Model.Types.Support
         /// <returns>Value converted from a string if the conversion succeeded; otherwise an exception is thrown.</returns>
         protected override DateTime? ConvertFromWireValueFormat(string value)
         {
-            string[] formats = GetDateTimeFormatStrings();
-
-            DateTime result;
-
+            var formats = GetDateTimeFormatStrings();
+            if (string.IsNullOrEmpty(value))
+                return null;
             // Unless instructed otherwise, DateTime.TryParseExact returns a DateTime with Kind = Local
-            if (DateTime.TryParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AssumeUniversal, out result))
-                return result;
-
-            throw ThrowHelper.New<InvalidCastException>(this, ErrorMessages.InvalidDateOrTimeValue, value);
+            return DateTime.ParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces);
         }
 
         /// <summary>
@@ -74,9 +71,10 @@ namespace Atdl4net.Model.Types.Support
         protected override string ConvertToWireValueFormat(DateTime? value)
         {
             string format = GetDateTimeFormatStrings()[0];
-            DateTime? adjustedValue = GetAdjustedValue(value);
+            //DateTime? adjustedValue = GetAdjustedValue(value);
+            //todo: adjust values when use different timezones
 
-            return adjustedValue != null ? ((DateTime)adjustedValue).ToString(format) : null;
+            return value != null ? value.Value.ToString(format) : null;
         }
 
         #endregion

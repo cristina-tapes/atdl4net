@@ -55,17 +55,37 @@ namespace Atdl4net.Model.Types
         /// </summary>
         /// <param name="value">Value to validate, may be null in which case no validation is applied.</param>
         /// <param name="isRequired">Set to true to check that this parameter is non-null.</param>
+        /// <param name="enumPairs">We need to check that the value is found inside this collection</param>
         /// <returns>ValidationResult indicating whether the supplied value is valid.</returns>
-        protected override ValidationResult ValidateValue(string value, bool isRequired)
+        protected override ValidationResult ValidateValue(string value, bool isRequired, EnumPairCollection enumPairs)
         {
-            if (MaxLength != null && value != null && value.Length > MaxLength)
-                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.MaxLengthExceeded, value, MaxLength);
+            if (!string.IsNullOrEmpty(value))
+            {
+                if (MaxLength != null && value.Length > MaxLength)
+                {
+                    var constraintText = string.Format(ErrorMessages.ConstraintMaxLengthExceeded, MaxLength);
+                    return new ValidationResult(ValidationResult.ResultType.InvalidConstraint, constraintText, ErrorMessages.MaxLengthExceeded,
+                                                value, MaxLength);
+                }
 
-            if (MinLength != null && value != null && value.Length < MinLength)
-                return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.MinLengthExceeded, value, MinLength);
-
-            if (isRequired && string.IsNullOrEmpty(value))
+                if (MinLength != null && value.Length < MinLength)
+                {
+                    var constraintText = string.Format(ErrorMessages.ConstraintMinLengthExceeded, MinLength);
+                    return new ValidationResult(ValidationResult.ResultType.InvalidConstraint, constraintText, ErrorMessages.MinLengthExceeded,
+                                                value, MinLength);
+                }
+            }
+            else if (isRequired)
                 return new ValidationResult(ValidationResult.ResultType.Missing, ErrorMessages.NonOptionalParameterNotSupplied2);
+
+            if (value != null &&
+                enumPairs.HasValues &&
+                !enumPairs.TryParseWireValue(value, out _))
+            {
+                var constraintText = string.Format(ErrorMessages.UnrecognisedEnumIdValue, value);
+                return new ValidationResult(ValidationResult.ResultType.InvalidConstraint, constraintText,
+                    ErrorMessages.InvalidControlValueError);
+            }
 
             return ValidationResult.ValidResult;
         }

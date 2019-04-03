@@ -74,6 +74,17 @@ namespace Atdl4net.Xml
             return strategies;
         }
 
+        public Strategies_t LoadFromString(string source)
+        {
+            XDocument document;
+            using (XmlReader reader = XmlReader.Create(new StringReader(source)))
+            {
+                document = XDocument.Load(reader, LoadOptions.SetLineInfo | LoadOptions.PreserveWhitespace);
+            }
+            Strategies_t strategies = LoadStrategies(document);
+            return strategies;
+        }
+
         private Strategies_t LoadStrategies(XDocument document)
         {
             XElement element = document.Element(AtdlNamespaces.core + "Strategies");

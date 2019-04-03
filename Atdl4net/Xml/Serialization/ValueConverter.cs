@@ -30,6 +30,9 @@ namespace Atdl4net.Xml.Serialization
 {
     public class ValueConverter
     {
+        public const string FalseWireValueString = "N";
+        public const string TrueWireValueString = "Y";
+
         public static readonly string ExceptionContext = typeof(ValueConverter).Name;
 
         public static T ConvertTo<T>(string value)
@@ -47,11 +50,14 @@ namespace Atdl4net.Xml.Serialization
                 case "System.Char":
                     if (value.Length == 1)
                         return Convert.ToChar(value);
-                    else
-                        throw ThrowHelper.New<InvalidFieldValueException>(ExceptionContext, ErrorMessages.InvalidCharValue, value);
+                    throw ThrowHelper.New<InvalidFieldValueException>(ExceptionContext, ErrorMessages.InvalidCharValue, value);
 
                 case "System.Boolean":
-                    return bool.Parse(value);
+                    if (TrueWireValueString.Equals(value) || Boolean.TrueString.Equals(value, StringComparison.CurrentCultureIgnoreCase))
+                    return true;
+                    if (FalseWireValueString.Equals(value) || Boolean.FalseString.Equals(value, StringComparison.CurrentCultureIgnoreCase))
+                        return false;
+                    throw ThrowHelper.New<InvalidFieldValueException>(ExceptionContext, ErrorMessages.InvalidBooleanValue, value, TrueWireValueString, FalseWireValueString);
 
                 case "System.Int32":
                     return Convert.ToInt32(value, CultureInfo.InvariantCulture);

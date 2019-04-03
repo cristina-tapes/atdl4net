@@ -21,6 +21,7 @@
 
 using System;
 using System.Globalization;
+using Atdl4net.Model.Collections;
 using Atdl4net.Model.Controls.Support;
 using Atdl4net.Model.Elements.Support;
 using Atdl4net.Resources;
@@ -34,6 +35,7 @@ namespace Atdl4net.Model.Types
     /// </summary>
     public class Percentage_t : Float_t
     {
+        private bool? _multiplyBy100;
         /// <summary>
         /// Applicable for xsi:type of Percentage_t. If true then percent values must be multiplied by 100 before being
         /// sent on the wire. For example, if multiplyBy100 were false then the percentage, 75%, would be sent as 0.75 
@@ -43,7 +45,17 @@ namespace Atdl4net.Model.Types
         /// with algorithmic interfaces that are non-compliant with FIX in regard to their handling of percentages. In
         /// these cases an integer parameter should be used instead of a percentage.
         /// </summary>
-        public bool? MultiplyBy100 { get; set; }
+        public bool? MultiplyBy100
+        {
+            get
+            {
+                return false; //we dont'support this feature, in orde to enable the feature just need to convert to auto-property
+            }
+            set
+            {
+                _multiplyBy100 = value;
+            }
+        }
 
         #region AtdlValueType<T> Overrides
 
@@ -52,20 +64,28 @@ namespace Atdl4net.Model.Types
         /// </summary>
         /// <param name="value">Value to validate, may be null in which case no validation is applied.</param>
         /// <param name="isRequired">Set to true to check that this parameter is non-null.</param>
+        /// <param name="enumPairs">We need to check that the value is found inside this collection</param>
         /// <returns>ValidationResult indicating whether the supplied value is valid.</returns>
-        protected override ValidationResult ValidateValue(decimal? value, bool isRequired)
+        protected override ValidationResult ValidateValue(decimal? value, bool isRequired, EnumPairCollection enumPairs)
         {
             if (value != null)
             {
                 int adjustmentFactor = (MultiplyBy100 == true) ? 1 : 100;
 
-                if (MaxValue != null && (decimal)value > MaxValue)
-                    return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.MaxValueExceeded,
-                        RemoveTrailingZeroes(value * adjustmentFactor), RemoveTrailingZeroes(MaxValue * adjustmentFactor));
+                var adjustedValue = 0 <= value && value <= 1 ? value * 100 : value;// used until we display on ui multiplied by 100
+                var maxValue = MaxValue * 100; // used until we display on ui multiplied by 100
+                var minValue = MinValue * 100; // used until we display on ui multiplied by 100
 
-                if (MinValue != null && (decimal)value < MinValue)
-                    return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.MinValueExceeded,
-                        RemoveTrailingZeroes(value * adjustmentFactor), RemoveTrailingZeroes(MinValue * adjustmentFactor));
+                if (maxValue != null && adjustedValue > maxValue)
+                {
+                    var constraintText = string.Format(ErrorMessages.ConstraintMaxValueExceeded, maxValue);
+                    return new ValidationResult(ValidationResult.ResultType.InvalidConstraint, constraintText, ErrorMessages.MaxValueExceeded, RemoveTrailingZeroes(adjustedValue * adjustmentFactor), RemoveTrailingZeroes(maxValue * adjustmentFactor)) { DisplayValue = adjustedValue.ToString()};
+                }
+                if (minValue != null && adjustedValue < minValue)
+                {
+                    var constraintText = string.Format(ErrorMessages.ConstraintMinValueExceeded, minValue);
+                    return new ValidationResult(ValidationResult.ResultType.InvalidConstraint, constraintText, ErrorMessages.MinValueExceeded, RemoveTrailingZeroes(adjustedValue * adjustmentFactor), RemoveTrailingZeroes(minValue * adjustmentFactor)) { DisplayValue = adjustedValue.ToString()};
+                }
             }
             else if (isRequired)
                 return new ValidationResult(ValidationResult.ResultType.Missing, ErrorMessages.NonOptionalParameterNotSupplied2);
@@ -82,9 +102,12 @@ namespace Atdl4net.Model.Types
         /// <returns>Value converted from a string.</returns>
         protected override decimal? ConvertFromWireValueFormat(string value)
         {
-            decimal? decimalValue = base.ConvertFromWireValueFormat(value);
+            var decimalValue = base.ConvertFromWireValueFormat(value);
 
-            return (MultiplyBy100 == true) ? (decimal)decimalValue / 100 : (decimal)decimalValue;
+            if (!decimalValue.HasValue)
+                return null;
+
+            return (MultiplyBy100 == true) ? (decimal)decimalValue / 100 : decimalValue;
         }
 
         /// <summary>

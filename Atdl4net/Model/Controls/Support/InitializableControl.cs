@@ -59,7 +59,7 @@ namespace Atdl4net.Model.Controls.Support
         /// defined then initialize with initValue.  If the value is equal to "UseFixField" then attempt to initialize with the value of 
         /// the tag specified in the initFixField attribute. If the value is equal to "UseFixField" and it is not possible to access the 
         /// value of the specified fix tag then revert to using initValue. If the value is equal to "UseFixField", the field is not accessible,
-        /// and initValue is not defined, then do not initialize.<br/br>
+        /// and initValue is not defined, then do not initialize.<br></br>
         /// Note that it is possible to initialize an enumerated control (e.g., DropDownList_t) from a FIX_ value.  In this case, it must
         /// be possible to retrieve a valid EnumID for the supplied FIX wire value.  The target parameter is used to translate the wire value
         /// into </remarks>

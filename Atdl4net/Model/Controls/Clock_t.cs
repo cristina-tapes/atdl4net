@@ -56,6 +56,11 @@ namespace Atdl4net.Model.Controls
         /// xsi:type is Clock_t.</summary>
         public string LocalMktTz { get; set; }
 
+        /// <summary>
+        /// The InitValue from AlgoDefinition kept as string for deserialization purposes
+        /// </summary>
+        public string ControlInitValue { get; set; }
+
         /// <summary>Defines the treatment of initValue time. 0: use initValue; 1: use current time if initValue time has passed.
         /// The default value is 0.</summary>
         public int? InitValueMode { get; set; }
@@ -125,7 +130,7 @@ namespace Atdl4net.Model.Controls
 
             if (isString)
             {
-                string value = newValue as string;
+                var value = newValue as string;
 
                 if (value == Atdl.NullValue)
                     _value = null;
@@ -207,7 +212,6 @@ namespace Atdl4net.Model.Controls
         /// Converts the value of this instance to an equivalent string value using the specified culture-specific formatting information.
         /// </summary>
         /// <param name="targetParameter">Target parameter for this conversion.</param>
-        /// <param name="provider">An <see cref="IFormatProvider"/> interface implementation that supplies culture-specific formatting information.</param>
         /// <returns>A string value equivalent to the value of this instance in the format YYYYMMDD-HH:MM:SS.  May be null.</returns>
         public override string ToString(IParameter targetParameter)
         {

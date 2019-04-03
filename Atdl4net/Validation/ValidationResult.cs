@@ -41,11 +41,15 @@ namespace Atdl4net.Validation
             Missing,
 
             /// <summary>The result represents an invalid value.</summary>
-            Invalid
+            Invalid,
+
+            /// <summary>The result represents a value that does not respect parameter constraints.</summary>
+            InvalidConstraint
         }
 
         private readonly ResultType _validityType;
         private readonly string _errorText;
+        private readonly string _contraintText;
 
         private static readonly ValidationResult _validResult = new ValidationResult();
 
@@ -66,21 +70,49 @@ namespace Atdl4net.Validation
         public string ErrorText { get { return _errorText; } }
 
         /// <summary>
+        /// Gets the constraint text for this ValidationResult; used when a validation has failed based on some constraint.
+        /// </summary>
+        public string ConstraintText { get { return _contraintText; } }
+
+        /// <summary>
         /// Gets a static ValidationResult instance that corresponds to a successful validation.
         /// </summary>
         public static ValidationResult ValidResult { get { return _validResult; } }
 
         /// <summary>
+        /// Gets the type of the ValidationResult.
+        /// </summary>
+        public ResultType Type { get { return _validityType; } }
+
+        /// <summary>
+        /// Gets the display value.
+        /// </summary>
+        public string DisplayValue { get; set; }
+
+        /// <summary>
         /// Initializes a new <see cref="ValidationResult"/> instance with the supplied state,
         /// format string and optional array of arguments.
         /// </summary>
-        /// <param name="isValid">Set this value to true if the validation succeeded, false otherwise.</param>
+        /// <param name="resultType">Type of the result.</param>
         /// <param name="format">Format string.</param>
         /// <param name="args">Optional array of arguments to apply to format string.</param>
         public ValidationResult(ResultType resultType, string format, params object[] args)
         {
             _validityType = resultType;
             _errorText = string.Format(format, args);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValidationResult"/> class.
+        /// </summary>
+        /// <param name="resultType">Type of the result.</param>
+        /// <param name="constraintText">The constraint text.</param>
+        /// <param name="format">The format.</param>
+        /// <param name="args">The args.</param>
+        public ValidationResult(ResultType resultType, string constraintText, string format, params object[] args)
+            : this(resultType, format, args)
+        {
+            _contraintText = constraintText;
         }
 
         private ValidationResult()

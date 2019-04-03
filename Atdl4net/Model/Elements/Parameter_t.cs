@@ -186,6 +186,16 @@ namespace Atdl4net.Model.Elements
         }
 
         /// <summary>
+        /// Validates the value entered.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public ValidationResult ValidateUserValue(string value)
+        {
+            return _value.ValidateUserValue(value, this);
+        }
+
+        /// <summary>
         /// Gets/sets the wire value of this parameter.
         /// </summary>
         public string WireValue

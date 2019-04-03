@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AttemptToAddDuplicateKey" xml:space="preserve">
     <value>It was not possible to add the item '{0}' to the collection {1} as an item with the same key had already been added.</value>
@@ -291,7 +291,7 @@
     <value>Parameter {0} may not be set to value {1}; reason: {2}</value>
   </data>
   <data name="DataConversionFailure" xml:space="preserve">
-    <value>This value cannot be converted into a valid {0}.</value>
+    <value>{0} cannot be converted into a valid {1}.</value>
   </data>
   <data name="NoStrategySelectedError" xml:space="preserve">
     <value>The current operation cannot be completed as no strategy has been selected.</value>
@@ -307,5 +307,23 @@
   </data>
   <data name="OneOrMoreInvalidControlValues" xml:space="preserve">
     <value>One or more controls have invalid values.</value>
+  </data>
+  <data name="ConstraintMaxLengthExceeded" xml:space="preserve">
+    <value>Value should have length shorter than {0}.</value>
+  </data>
+  <data name="ConstraintMaxValueExceeded" xml:space="preserve">
+    <value>Value should be less than {0}.</value>
+  </data>
+  <data name="ConstraintMinLengthExceeded" xml:space="preserve">
+    <value>Value should have length greater than {0}.</value>
+  </data>
+  <data name="ConstraintMinValueExceeded" xml:space="preserve">
+    <value>Value should be greater than {0}.</value>
+  </data>
+  <data name="MissingMandatoryParameter" xml:space="preserve">
+    <value>Missing mandatory parameter: {0}</value>
+  </data>
+  <data name="WrongValue" xml:space="preserve">
+    <value>Wrong value '{0}' for {1}. </value>
   </data>
 </root>

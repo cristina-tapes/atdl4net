@@ -70,16 +70,24 @@ namespace Atdl4net.Model.Types
         /// </summary>
         /// <param name="value">Value to validate, may be null in which case no validation is applied.</param>
         /// <param name="isRequired">Set to true to check that this parameter is non-null.</param>
+        /// <param name="enumPairs">We need to check that the value is found inside this collection</param>
         /// <returns>ValidationResult indicating whether the supplied value is valid.</returns>
-        protected override ValidationResult ValidateValue(decimal? value, bool isRequired)
+        protected override ValidationResult ValidateValue(decimal? value, bool isRequired, EnumPairCollection enumPairs)
         {
             if (value != null)
             {
                 if (MaxValue != null && (decimal)value > MaxValue)
-                    return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.MaxValueExceeded, value, MaxValue);
-
+                {
+                    var constraintText = string.Format(ErrorMessages.ConstraintMaxValueExceeded, MaxValue);
+                    return new ValidationResult(ValidationResult.ResultType.InvalidConstraint, constraintText, ErrorMessages.MaxValueExceeded,
+                                                value, MaxValue);
+                }
                 if (MinValue != null && (decimal)value < MinValue)
-                    return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.MinValueExceeded, value, MinValue);
+                {
+                    var constraintText = string.Format(ErrorMessages.ConstraintMinValueExceeded, MinValue);
+                    return new ValidationResult(ValidationResult.ResultType.InvalidConstraint, constraintText, ErrorMessages.MinValueExceeded,
+                                                value, MinValue);
+                }
             }
             else if (isRequired)
                 return new ValidationResult(ValidationResult.ResultType.Missing, ErrorMessages.NonOptionalParameterNotSupplied2);
@@ -95,6 +103,8 @@ namespace Atdl4net.Model.Types
         /// <returns>Value converted from a string.</returns>
         protected override decimal? ConvertFromWireValueFormat(string value)
         {
+            if (string.IsNullOrEmpty(value))
+                return null;
             return Convert.ToDecimal(value, CultureInfo.InvariantCulture);
         }
 

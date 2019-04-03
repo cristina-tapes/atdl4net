@@ -1,4 +1,5 @@
 ﻿#region Copyright (c) 2010-2012, Cornerstone Technology Limited. http://atdl4net.org
+
 //
 //   This software is released under both commercial and open-source licenses.
 //
@@ -21,6 +22,7 @@
 
 using System;
 using Atdl4net.Model.Controls.Support;
+using Atdl4net.Model.Elements;
 using Atdl4net.Model.Elements.Support;
 using Atdl4net.Validation;
 
@@ -48,6 +50,14 @@ namespace Atdl4net.Model.Types.Support
         /// <remarks>An <see cref="IParameterConvertible"/> is passed in enabling the control value to be converted into any 
         /// desired type, provided that the value supports conversion to that type.</remarks>
         ValidationResult SetValueFromControl(IParameter hostParameter, IParameterConvertible value);
+
+        /// <summary>
+        /// Validates the user value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="hostParameter">The host parameter.</param>
+        /// <returns></returns>
+        ValidationResult ValidateUserValue(string value, IParameter hostParameter);
 
         /// <summary>
         /// Sets the wire value for this parameter.  This method is typically used to initialise the parameter through the

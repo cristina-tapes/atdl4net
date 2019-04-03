@@ -67,7 +67,7 @@
                     <Path Fill="DarkSlateGray" Data="M 0 4 L 8 4 L 4 0 Z"/>
                 </RepeatButton>
                 <RepeatButton Name="outerDownButton" Margin="0,0,1,1" Grid.Row="1" FocusVisualStyle="{x:Null}" Background="GhostWhite"
-                              KeyboardNavigation.IsTabStop="False" Click="outerDownButton_Click" KeyDown="outerDownButton_KeyDown" >
+                              KeyboardNavigation.IsTabStop="False" Click="outerDownButton_Click" KeyDown="outerDownButton_KeyDown" Height="8" VerticalAlignment="Bottom">
                     <Path Fill="DarkSlateGray" Data="M 0 0 L 4 4 L 8 0 Z"/>
                 </RepeatButton>
             </Grid>

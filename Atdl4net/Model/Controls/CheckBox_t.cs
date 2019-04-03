@@ -19,7 +19,6 @@
 //
 #endregion
 
-using System;
 using Atdl4net.Model.Controls.Support;
 using Common.Logging;
 
@@ -41,5 +40,7 @@ namespace Atdl4net.Model.Controls
         {
             _log.Debug(m => m("New CheckBox_t created as control {0}", id));
         }
+
+        public string ControlInitValue { get; set; }
     }
 }

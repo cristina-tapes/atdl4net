@@ -35,6 +35,8 @@ namespace Atdl4net.Model.Elements
         private readonly StrategyPanelCollection _strategyPanels;
         private ControlCollection _controls;
 
+        public bool IsRoot { get; }
+
         public Border_t? Border { get; set; }
         public bool? Collapsed { get; set; }
         public bool? Collapsible { get; set; }
@@ -56,10 +58,11 @@ namespace Atdl4net.Model.Elements
         {
             _owningStrategy = owningStrategy;
             _owningStrategyPanel = parent as StrategyPanel_t;
+            IsRoot = _owningStrategyPanel == null;
 
             // Set defaults
-            Collapsed = true;
-            Collapsible = false;
+            Collapsed = false;
+            Collapsible = true;
 
             _strategyPanels = new StrategyPanelCollection();
         }

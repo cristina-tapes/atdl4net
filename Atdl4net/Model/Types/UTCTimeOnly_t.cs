@@ -20,7 +20,9 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using Atdl4net.Fix;
+using Atdl4net.Model.Collections;
 using Atdl4net.Model.Types.Support;
 using Atdl4net.Resources;
 
@@ -36,7 +38,7 @@ namespace Atdl4net.Model.Types
     /// </summary>
     public class UTCTimeOnly_t : UTCDateTimeTypeBase
     {
-        private static readonly string[] _formatStrings = new string[] { FixDateTimeFormat.FixTimeOnly, FixDateTimeFormat.FixTimeOnlyMs };
+        public static readonly List<string> FormatStrings = new List<string> { FixDateTimeFormat.FixTimeOnly, FixDateTimeFormat.FixTimeOnlyMs };
 
         /// <summary>
         /// Gets the DateTime format strings to use when converting this date/time to a FIX string and vice versa.
@@ -47,7 +49,7 @@ namespace Atdl4net.Model.Types
         /// value is used.</remarks>
         protected override string[] GetDateTimeFormatStrings()
         {
-            return _formatStrings;
+            return FormatStrings.ToArray();
         }
 
         /// <summary>
@@ -57,6 +59,16 @@ namespace Atdl4net.Model.Types
         protected override string GetHumanReadableTypeName()
         {
             return HumanReadableTypeNames.TimeType;
+        }
+
+        protected override string MaxValueString()
+        {
+            return MaxValue != null ? MaxValue.Value.ToString(FixDateTimeFormat.FixTimeOnly) : null;
+        }
+
+        protected override string MinValueString()
+        {
+            return MinValue != null ? MinValue.Value.ToString(FixDateTimeFormat.FixTimeOnly) : null;
         }
     }
 }

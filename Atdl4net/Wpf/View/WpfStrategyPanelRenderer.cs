@@ -21,8 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -83,7 +81,7 @@ namespace Atdl4net.Wpf.View
 
             // TODO: Move this elsewhere
 
-            CompositionContainer defaultContainer = new CompositionContainer(new TypeCatalog(_defaultRenderers));
+            /*CompositionContainer defaultContainer = new CompositionContainer(new TypeCatalog(_defaultRenderers));
 
             if (!string.IsNullOrEmpty(CustomControlRenderer))
             {
@@ -101,6 +99,7 @@ namespace Atdl4net.Wpf.View
             }
             else
                 defaultContainer.ComposeParts(controlRenderer);
+             */
 
             int depth = 0;
 
@@ -150,7 +149,7 @@ namespace Atdl4net.Wpf.View
                         for (int n = 0; n < rowCount; n++)
                         {
                             using (writer.New(WpfXmlWriterTag.RowDefinition))
-                                    writer.WriteAttribute(WpfXmlWriterAttribute.Height, "Auto");
+                                writer.WriteAttribute(WpfXmlWriterAttribute.Height, "Auto");
                         }
                     }
 

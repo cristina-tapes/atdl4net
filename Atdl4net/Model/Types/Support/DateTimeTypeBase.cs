@@ -53,9 +53,10 @@ namespace Atdl4net.Model.Types.Support
         /// </summary>
         /// <param name="value">Value to validate, may be null in which case no validation is applied.</param>
         /// <param name="isRequired">Set to true to check that this parameter is non-null.</param>
+        /// <param name="enumPairs">We need to check that the value is found inside this collection</param>
         /// <returns>ValidationResult indicating whether the supplied value is valid.</returns>
         /// <remarks>DateTime.MaxValue (a date and time at the end of the year 9999) is used to indicate an invalid date or time.</remarks>
-        protected override ValidationResult ValidateValue(DateTime? value, bool isRequired)
+        protected override ValidationResult ValidateValue(DateTime? value, bool isRequired, EnumPairCollection enumPairs)
         {
             if (value != null)
             {
@@ -63,10 +64,18 @@ namespace Atdl4net.Model.Types.Support
                     return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.InvalidDateOrTimeValueUnknown);
 
                 if (MaxValue != null && (DateTime)value > MaxValue)
-                    return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.MaxValueExceeded, value, MaxValue);
+                {
+                    var constraintText = string.Format(ErrorMessages.ConstraintMaxValueExceeded, MaxValueString());
+                    return new ValidationResult(ValidationResult.ResultType.InvalidConstraint, constraintText, ErrorMessages.MaxValueExceeded,
+                                                value, MaxValue);
+                }
 
                 if (MinValue != null && (DateTime)value < MinValue)
-                    return new ValidationResult(ValidationResult.ResultType.Invalid, ErrorMessages.MinValueExceeded, value, MinValue);
+                {
+                    var constraintText = string.Format(ErrorMessages.ConstraintMinValueExceeded, MinValueString());
+                    return new ValidationResult(ValidationResult.ResultType.InvalidConstraint, constraintText, ErrorMessages.MinValueExceeded,
+                                                value, MinValue);
+                }
             }
             else if (isRequired)
                 return new ValidationResult(ValidationResult.ResultType.Missing, ErrorMessages.NonOptionalParameterNotSupplied2);
@@ -82,14 +91,10 @@ namespace Atdl4net.Model.Types.Support
         /// <returns>Value converted from a string if the conversion succeeded; otherwise an exception is thrown.</returns>
         protected override DateTime? ConvertFromWireValueFormat(string value)
         {
-            string[] formats = GetDateTimeFormatStrings();
-
-            DateTime result;
-
-            if (DateTime.TryParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces, out result))
-                return result;
-
-            throw ThrowHelper.New<InvalidCastException>(this, ErrorMessages.InvalidDateOrTimeValue, value);
+            var formats = GetDateTimeFormatStrings();
+            if (string.IsNullOrEmpty(value))
+                return null;
+            return DateTime.ParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces);
         }
 
         /// <summary>
@@ -101,7 +106,7 @@ namespace Atdl4net.Model.Types.Support
         {
             string format = GetDateTimeFormatStrings()[0];
 
-            return _value != null ? ((DateTime)_value).ToString(format) : null;
+            return value != null ? ((DateTime)value).ToString(format) : null;
         }
 
         /// <summary>
@@ -185,5 +190,9 @@ namespace Atdl4net.Model.Types.Support
         /// converting from string to DateTime, the member of the array that has the same length as the string
         /// value is used.</remarks>
         protected abstract string[] GetDateTimeFormatStrings();
+
+        protected abstract string MaxValueString();
+
+        protected abstract string MinValueString();
     }
 }

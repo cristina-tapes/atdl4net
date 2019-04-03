@@ -20,11 +20,9 @@
 #endregion
 
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 
 namespace Atdl4net.Wpf.View.DefaultRendering
 {
-    [Export(typeof(Atdl4net.Wpf.View.INamespaceProvider))]
     internal class DefaultNamespaceProvider : INamespaceProvider
     {
         public const string XamlNamespaceUri = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
@@ -37,7 +35,7 @@ namespace Atdl4net.Wpf.View.DefaultRendering
 
         private readonly Dictionary<string, string> _namespaces;
 
-        DefaultNamespaceProvider()
+        private DefaultNamespaceProvider()
         {
             _namespaces = new Dictionary<string, string>();
 

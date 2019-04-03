@@ -46,6 +46,16 @@ namespace Atdl4net.Model.Types
             return _formatStrings;
         }
 
+        protected override string MaxValueString()
+        {
+            return MaxValue != null ? MaxValue.Value.ToString(FixDateTimeFormat.FixDateOnly) : null;
+        }
+
+        protected override string MinValueString()
+        {
+            return MinValue != null ? MinValue.Value.ToString(FixDateTimeFormat.FixDateOnly) : null;
+        }
+
         /// <summary>
         /// Gets the human-readable type name for use in error messages shown to the user.
         /// </summary>
