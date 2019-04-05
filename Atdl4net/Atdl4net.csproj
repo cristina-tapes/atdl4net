@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,47 +10,98 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Atdl4net</RootNamespace>
     <AssemblyName>Atdl4net</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\VS2010-4.0\bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET_40</DefineConstants>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>
-    </DocumentationFile>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\VS2010-4.0\bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NET_40</DefineConstants>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\VS2010-4.0\Dependencies\Common.Logging.dll</HintPath>
+      <HintPath>packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include=".\Diagnostics\ExceptionInfo.cs">
@@ -95,26 +146,6 @@
     </Compile>
     <Compile Include=".\Model\Collections\EnumPairCollection.cs">
     </Compile>
-    <Compile Include="Diagnostics\Exceptions\FixParseException.cs" />
-    <Compile Include="Fix\FixTagValuesCollection.cs">
-    </Compile>
-    <Compile Include="Configuration\Atdl4netConfiguration.cs" />
-    <Compile Include="Fix\FixFieldValueProvider.cs" />
-    <Compile Include="Model\Controls\Support\InitializableControl.cs" />
-    <Compile Include="Model\Types\Support\UTCDataTimeTypeBase.cs" />
-    <Compile Include="Notification\INotifyValueChangeCompleted.cs" />
-    <Compile Include="Notification\StateChangedEventArgs.cs" />
-    <Compile Include="Notification\StrategyChangedEventArgs.cs" />
-    <Compile Include="Notification\StrategyLoadedEventArgs.cs" />
-    <Compile Include="Notification\ValidationStateChangedEventArgs.cs" />
-    <Compile Include="Notification\ValueChangeCompletedEventArgs.cs" />
-    <Compile Include="Notification\ValueChangedEventArgs.cs" />
-    <Compile Include="Configuration\ConfigurationSectionHandler.cs" />
-    <Compile Include="Diagnostics\Exceptions\InconsistentStrategyException.cs" />
-    <Compile Include="Fix\FixDateTime.cs" />
-    <Compile Include="Fix\FixDateTimeFormat.cs" />
-    <Compile Include="Model\Collections\ISimpleDictionary.cs">
-    </Compile>
     <Compile Include=".\Model\Collections\ListItemCollection.cs">
     </Compile>
     <Compile Include=".\Model\Collections\MarketCollection.cs">
@@ -149,13 +180,6 @@
     </Compile>
     <Compile Include=".\Model\Controls\HiddenField_t.cs">
     </Compile>
-    <Compile Include="Model\Controls\Support\BinaryControlBase.cs" />
-    <Compile Include="Model\Controls\Support\IControlVisitor.cs" />
-    <Compile Include="Model\Controls\Support\IParameterConvertible.cs" />
-    <Compile Include="Model\Controls\Support\ListControlBase.cs">
-    </Compile>
-    <Compile Include="Model\Controls\Support\IOrientableControl.cs">
-    </Compile>
     <Compile Include=".\Model\Controls\Label_t.cs">
     </Compile>
     <Compile Include=".\Model\Controls\MultiSelectList_t.cs">
@@ -183,14 +207,6 @@
     <Compile Include=".\Model\Elements\Edit_t.cs">
     </Compile>
     <Compile Include=".\Model\Elements\EnumPair_t.cs">
-    </Compile>
-    <Compile Include="Model\Controls\Support\NumericControlBase.cs" />
-    <Compile Include="Model\Controls\Support\TextControlBase.cs" />
-    <Compile Include="Model\Elements\Support\IEdit.cs">
-    </Compile>
-    <Compile Include="Model\Elements\Support\IParameter.cs">
-    </Compile>
-    <Compile Include="Model\Elements\Support\IStrategyPanel.cs">
     </Compile>
     <Compile Include=".\Model\Elements\ListItem_t.cs">
     </Compile>
@@ -242,12 +258,6 @@
     </Compile>
     <Compile Include=".\Model\Types\Amt_t.cs">
     </Compile>
-    <Compile Include="Model\Atdl.cs" />
-    <Compile Include="Model\Controls\Support\AtdlControlName.cs" />
-    <Compile Include="Model\Reference\IsoLanguageCode.cs" />
-    <Compile Include="Model\Types\Support\AtdlReferenceType.cs" />
-    <Compile Include="Model\Types\Support\AtdlTypeName.cs">
-    </Compile>
     <Compile Include=".\Model\Types\Boolean_t.cs">
     </Compile>
     <Compile Include=".\Model\Types\Char_t.cs">
@@ -256,16 +266,11 @@
     </Compile>
     <Compile Include=".\Model\Types\Data_t.cs">
     </Compile>
-    <Compile Include="Model\Controls\Support\EnumState.cs">
-    </Compile>
     <Compile Include=".\Model\Types\Exchange_t.cs">
     </Compile>
     <Compile Include=".\Model\Types\Float_t.cs">
     </Compile>
     <Compile Include=".\Model\Types\Int_t.cs">
-    </Compile>
-    <Compile Include="Model\Types\Support\EnumTypeBase.cs" />
-    <Compile Include="Model\Types\Support\IParameterType.cs">
     </Compile>
     <Compile Include=".\Model\Types\Language_t.cs">
     </Compile>
@@ -273,17 +278,11 @@
     </Compile>
     <Compile Include=".\Model\Types\LocalMktDate_t.cs">
     </Compile>
-    <Compile Include="Model\Types\Support\MonthYear.cs">
-    </Compile>
     <Compile Include=".\Model\Types\MonthYear_t.cs">
     </Compile>
     <Compile Include=".\Model\Types\MultipleCharValue_t.cs">
     </Compile>
     <Compile Include=".\Model\Types\MultipleStringValue_t.cs">
-    </Compile>
-    <Compile Include="Model\Types\Support\NonNegativeIntegerTypeBase.cs">
-    </Compile>
-    <Compile Include="Model\Types\Support\NonZeroPositiveIntegerTypeBase.cs">
     </Compile>
     <Compile Include=".\Model\Types\NumInGroup_t.cs">
     </Compile>
@@ -301,9 +300,7 @@
     </Compile>
     <Compile Include=".\Model\Types\TagNum_t.cs">
     </Compile>
-    <Compile Include="Model\Types\Support\Tenor.cs">
-    </Compile>
-    <Compile Include="Model\Types\Tenor_t.cs">
+    <Compile Include=".\Model\Types\Tenor_t.cs">
     </Compile>
     <Compile Include=".\Model\Types\TZTimeOnly_t.cs">
     </Compile>
@@ -315,29 +312,6 @@
     </Compile>
     <Compile Include=".\Model\Types\UTCTimestamp_t.cs">
     </Compile>
-    <Compile Include="Resources\HumanReadableTypeNames.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HumanReadableTypeNames.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Validation\EditEvaluator.cs">
-    </Compile>
-    <Compile Include="Notification\INotifyStrategyLoaded.cs">
-    </Compile>
-    <Compile Include=".\Providers\IStrategyProvider.cs">
-    </Compile>
-    <Compile Include=".\Providers\ProviderIdCollection.cs">
-    </Compile>
-    <Compile Include=".\Providers\StrategiesDictionary.cs">
-    </Compile>
-    <Compile Include="Providers\StrategyProvider.cs">
-    </Compile>
-    <Compile Include=".\Providers\StrategyInfo.cs">
-    </Compile>
-    <Compile Include=".\Providers\StrategyInfoCollection.cs">
-    </Compile>
-    <Compile Include=".\Providers\StrategyKey.cs">
-    </Compile>
     <Compile Include=".\Resources\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -348,9 +322,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InternalErrors.resx</DependentUpon>
     </Compile>
-    <Compile Include=".\Utility\DataEntryMode.cs">
-    </Compile>
-    <Compile Include=".\Utility\IBindable.cs">
+    <Compile Include=".\Resources\HumanReadableTypeNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HumanReadableTypeNames.resx</DependentUpon>
     </Compile>
     <Compile Include=".\Utility\IParentable.cs">
     </Compile>
@@ -358,124 +333,7 @@
     </Compile>
     <Compile Include=".\Utility\ModelUtils.cs">
     </Compile>
-    <Compile Include=".\Utility\ProcessExtensions.cs">
-    </Compile>
     <Compile Include=".\Utility\StringExtensions.cs">
-    </Compile>
-    <Compile Include="Validation\EditValueConverter.cs" />
-    <Compile Include="Validation\ControlValidationState.cs" />
-    <Compile Include="Validation\ValidationResult.cs" />
-    <Compile Include="Wpf\ViewModel\IInitialFixValueProvider.cs" />
-    <Compile Include="Wpf\ViewModel\InvalidatableControlViewModel.cs" />
-    <Compile Include="Wpf\ViewModel\StrategyEditViewModel.cs" />
-    <Compile Include="Wpf\ViewModel\ViewModelStrategyEditCollection.cs" />
-    <Compile Include="Wpf\View\Controls\NumericSpinnerControlBase.cs" />
-    <Compile Include="Xml\Serialization\ValueConverter.cs">
-    </Compile>
-    <Compile Include=".\Wpf\AtdlControl.xaml.cs">
-      <DependentUpon>AtdlControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Wpf\ViewModel\ControlViewModel.cs">
-    </Compile>
-    <Compile Include="Wpf\ViewModel\EditViewModel.cs">
-    </Compile>
-    <Compile Include="Notification\INotifyStateChanged.cs">
-    </Compile>
-    <Compile Include="Notification\INotifyValueChanged.cs">
-    </Compile>
-    <Compile Include="Wpf\ViewModel\ListControlViewModel.cs">
-    </Compile>
-    <Compile Include="Wpf\ViewModel\ListItemViewModel.cs">
-    </Compile>
-    <Compile Include=".\Wpf\ViewModel\RadioButtonGroupManager.cs">
-    </Compile>
-    <Compile Include="Wpf\ViewModel\RadioButtonViewModel.cs">
-    </Compile>
-    <Compile Include="Wpf\ViewModel\StateRuleViewModel.cs">
-    </Compile>
-    <Compile Include=".\Wpf\ViewModel\StrategyViewModel.cs">
-    </Compile>
-    <Compile Include=".\Wpf\ViewModel\ViewModelControlCollection.cs">
-    </Compile>
-    <Compile Include=".\Wpf\ViewModel\ViewModelEditCollection.cs">
-    </Compile>
-    <Compile Include=".\Wpf\ViewModel\ViewModelListItemCollection.cs">
-    </Compile>
-    <Compile Include=".\Wpf\ViewModel\ViewModelStateRuleCollection.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\Controls\CheckBoxList.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\Controls\ClickSelectTextBox.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\Controls\DoubleSpinner.xaml.cs">
-      <DependentUpon>DoubleSpinner.xaml</DependentUpon>
-    </Compile>
-    <Compile Include=".\Wpf\View\Controls\MultiButtonControlBase.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\Controls\RadioButtonList.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\Controls\SingleSpinner.xaml.cs">
-      <DependentUpon>SingleSpinner.xaml</DependentUpon>
-    </Compile>
-    <Compile Include=".\Wpf\View\Controls\Slider.xaml.cs">
-      <DependentUpon>Slider.xaml</DependentUpon>
-    </Compile>
-    <Compile Include=".\Wpf\View\Controls\StrategyPanelFrame.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\Controls\TimeInstant.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\Controls\TimePicker.xaml.cs">
-      <DependentUpon>TimePicker.xaml</DependentUpon>
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\CheckBoxListRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\CheckBoxRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\ClockRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\DefaultNamespaceProvider.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\DoubleSpinnerRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\DropDownListRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\EditableDropDownListRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\HiddenFieldRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\LabelRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\MultiSelectListRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\RadioButtonListRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\RadioButtonRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\SingleSelectListRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\SingleSpinnerRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\SliderRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\DefaultRendering\TextFieldRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\GridCoordinate.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\INamespaceProvider.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\IWpfControlRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\WpfComboBoxSizer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\WpfControlRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\WpfStrategyPanelRenderer.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\WpfXmlWriter.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\WpfXmlWriterAttribute.cs">
-    </Compile>
-    <Compile Include=".\Wpf\View\WpfXmlWriterTag.cs">
     </Compile>
     <Compile Include=".\Xml\AtdlNamespaces.cs">
     </Compile>
@@ -513,68 +371,105 @@
     </Compile>
     <Compile Include=".\Xml\StrategiesReader.cs">
     </Compile>
+    <Compile Include="Configuration\Atdl4netConfiguration.cs" />
+    <Compile Include="Configuration\ConfigurationSectionHandler.cs" />
+    <Compile Include="Diagnostics\Exceptions\FixParseException.cs" />
+    <Compile Include="Diagnostics\Exceptions\InconsistentStrategyException.cs" />
+    <Compile Include="Fix\FixDateTime.cs" />
+    <Compile Include="Fix\FixDateTimeFormat.cs" />
+    <Compile Include="Fix\FixFieldValueProvider.cs" />
+    <Compile Include="Fix\FixTagValuesCollection.cs" />
+    <Compile Include="Model\Atdl.cs" />
+    <Compile Include="Model\Collections\ISimpleDictionary.cs" />
+    <Compile Include="Model\Controls\Support\AtdlControlName.cs" />
+    <Compile Include="Model\Controls\Support\BinaryControlBase.cs" />
+    <Compile Include="Model\Controls\Support\EnumState.cs" />
+    <Compile Include="Model\Controls\Support\IControlVisitor.cs" />
+    <Compile Include="Model\Controls\Support\InitializableControl.cs" />
+    <Compile Include="Model\Controls\Support\IOrientableControl.cs" />
+    <Compile Include="Model\Controls\Support\IParameterConvertible.cs" />
+    <Compile Include="Model\Controls\Support\ListControlBase.cs" />
+    <Compile Include="Model\Controls\Support\NumericControlBase.cs" />
+    <Compile Include="Model\Controls\Support\TextControlBase.cs" />
+    <Compile Include="Model\Elements\Support\IEdit.cs" />
+    <Compile Include="Model\Elements\Support\IParameter.cs" />
+    <Compile Include="Model\Elements\Support\IStrategyPanel.cs" />
+    <Compile Include="Model\Reference\IsoLanguageCode.cs" />
     <Compile Include="Model\Types\Country_t.cs" />
-    <Compile Include="Model\Types\Support\DateTimeTypeBase.cs" />
+    <Compile Include="Model\Types\Support\AtdlReferenceType.cs" />
+    <Compile Include="Model\Types\Support\AtdlTypeName.cs" />
     <Compile Include="Model\Types\Support\AtdlValueType.cs" />
-    <Compile Include="Validation\IValueProvider.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\Types\Support\DateTimeTypeBase.cs" />
+    <Compile Include="Model\Types\Support\EnumTypeBase.cs" />
     <Compile Include="Model\Types\Support\IControlConvertible.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include=".\Wpf\AtdlControl.Resources.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include=".\Wpf\AtdlControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include=".\Wpf\View\Controls\DoubleSpinner.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include=".\Wpf\View\Controls\SingleSpinner.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include=".\Wpf\View\Controls\Slider.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include=".\Wpf\View\Controls\TimePicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="Model\Types\Support\IParameterType.cs" />
+    <Compile Include="Model\Types\Support\MonthYear.cs" />
+    <Compile Include="Model\Types\Support\NonNegativeIntegerTypeBase.cs" />
+    <Compile Include="Model\Types\Support\NonZeroPositiveIntegerTypeBase.cs" />
+    <Compile Include="Model\Types\Support\Tenor.cs" />
+    <Compile Include="Model\Types\Support\UTCDataTimeTypeBase.cs" />
+    <Compile Include="Notification\INotifyStrategyLoaded.cs" />
+    <Compile Include="Notification\StateChangedEventArgs.cs" />
+    <Compile Include="Notification\StrategyChangedEventArgs.cs" />
+    <Compile Include="Notification\StrategyLoadedEventArgs.cs" />
+    <Compile Include="Notification\ValidationStateChangedEventArgs.cs" />
+    <Compile Include="Notification\ValueChangedEventArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\DateTimeMixins.cs" />
+    <Compile Include="Validation\EditEvaluator.cs" />
+    <Compile Include="Validation\EditValueConverter.cs" />
+    <Compile Include="Validation\IValueProvider.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
+    <Compile Include="Wpf\ViewModel\IInitialFixValueProvider.cs" />
+    <Compile Include="Xml\Serialization\ValueConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include=".\Resources\ErrorMessages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include=".\Resources\InternalErrors.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>InternalErrors.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\HumanReadableTypeNames.resx">
+    <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HumanReadableTypeNames.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HumanReadableTypeNames.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

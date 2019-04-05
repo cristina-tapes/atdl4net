@@ -8,9 +8,9 @@
 //
 //      This file is part of Atdl4net.
 //
-//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public 
+//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public
 //      License as published by the Free Software Foundation, either version 2.1 of the License, or (at your option) any later version.
-// 
+//
 //      Atdl4net is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 //      of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
 //
@@ -42,7 +42,7 @@ namespace Atdl4net.Model.Elements.Support
         /// </summary>
         void Reset();
 
-        /// <summary>Gets/sets the DefinedByFIX property, which indicates whether the parameter is a redefinition of a 
+        /// <summary>Gets/sets the DefinedByFIX property, which indicates whether the parameter is a redefinition of a
         /// standard FIX tag. The default value is false.</summary>
         bool? DefinedByFix { get; set; }
 
@@ -58,33 +58,33 @@ namespace Atdl4net.Model.Elements.Support
         /// </summary>
         bool HasEnumPairs { get; }
 
-        /// <summary>Gets or sets the FIX tag for this parameter, i.e., the tag that will hold the value of the 
-        /// parameter. Required when parameter value is intended to be transported over the wire.  If fixTag is not 
-        /// provided then the Strategies-level attribute, tag957Support, must be set to true, indicating that the 
-        /// order recipient expects to receive algo parameters in the StrategyParameterGrp repeating group beginning 
+        /// <summary>Gets or sets the FIX tag for this parameter, i.e., the tag that will hold the value of the
+        /// parameter. Required when parameter value is intended to be transported over the wire.  If fixTag is not
+        /// provided then the Strategies-level attribute, tag957Support, must be set to true, indicating that the
+        /// order recipient expects to receive algo parameters in the StrategyParameterGrp repeating group beginning
         /// at tag 957.  <b>NB Atdl4net does not currently support usage of the StrategyParameterGrp element.</b></summary>
         /// <value>The FIX tag to use.</value>
         FixTag? FixTag { get; set; }
 
-        /// <summary>Indicates whether this parameter�s value can be modified by an Order Cancel/Replace Request message.
+        /// <summary>Indicates whether this parameter's value can be modified by an Order Cancel/Replace Request message.
         /// The default value for this field is true.
         /// </summary>
         bool? MutableOnCxlRpl { get; set; }
 
         /// <summary>The name of this parameter.</summary>
-        /// <remarks>No two parameters of any strategy may have the same name. The name may be used as a unique key when referenced 
-        /// from the other sub-schemas. Names must begin with an alpha character followed only by alpha-numeric characters 
+        /// <remarks>No two parameters of any strategy may have the same name. The name may be used as a unique key when referenced
+        /// from the other sub-schemas. Names must begin with an alpha character followed only by alpha-numeric characters
         /// and must not contain whitespace characters.</remarks>
         string Name { get; set; }
 
         /// <summary>Indicates how to interpret those tags that were populated in an original order but are not populated in
-        /// a subsequent cancel/replace of the order message. If this value is true then revert to the value of the original 
-        /// order, otherwise a null value or the parameter�s default value (Control/@initValue) is to be used or if none is
+        /// a subsequent cancel/replace of the order message. If this value is true then revert to the value of the original
+        /// order, otherwise a null value or the parameter's default value (Control/@initValue) is to be used or if none is
         /// specified, the parameter is to be omitted.  The default value for this field is false.<br/>
         /// </summary>
         /// <remarks>Although revertOnCxlRpl and mutableOnCxlRpl might appear to be mutually exclusive, this is not strictly
         /// the case, and as the default value for mutableOnCxlRpl is 'true', it is recommended practice to explicitly include
-        /// mutableOnCxlRpl="false" if the option revertOnCxlRpl="true" is set for a given parameter (assuming of course this 
+        /// mutableOnCxlRpl="false" if the option revertOnCxlRpl="true" is set for a given parameter (assuming of course this
         /// is the intended behaviour).</remarks>
         bool? RevertOnCxlRpl { get; set; }
 
