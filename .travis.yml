@@ -1,6 +1,0 @@
-language: csharp
-solution: Atdl4net.sln
-install:
-  - nuget restore Atdl4net.sln
-script:
-  - msbuild /p:Configuration=Release Atdl4net.sln

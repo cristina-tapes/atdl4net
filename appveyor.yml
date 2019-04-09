@@ -1,0 +1,12 @@
+image: Visual Studio 2017
+
+version: {build}
+
+configuration: Release 
+  
+before_build:
+  - nuget restore
+
+build:
+  project: Atdl4net.sln
+  verbosity: minimal
