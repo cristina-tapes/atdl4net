@@ -8,3 +8,10 @@ before_build:
 build:
   project: Atdl4net.sln
   verbosity: minimal
+
+deploy:
+  - provider: NuGet
+    symbol_server: https://ci.appveyor.com/nuget/cristina-tapes/api/v2/package
+    api_key:
+      secure: obph7mqoulwtis2opwwp
+    artifact: /.*\.symbols\.nupkg/
