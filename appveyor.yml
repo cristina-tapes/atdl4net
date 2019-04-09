@@ -13,5 +13,5 @@ deploy:
   - provider: NuGet
     symbol_server: https://ci.appveyor.com/nuget/cristina-tapes-7qs0g4us7vw4/api/v2/package
     api_key:
-      secure: evbspfhwtymtd9nx7u42i36r
+      secure: 3QOcYJQfDzYQTMmXxWrKKZaRlHDWwZQIdrFnQWbx7dk=
     artifact: /.*\.symbols\.nupkg/
