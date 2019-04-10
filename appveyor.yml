@@ -10,7 +10,7 @@ build:
     verbosity: minimal
   
 after_build:
-    - nuget pack Atdl4net/Atdl4net.csproj -properties Configuration=%configuration%
+    - nuget pack Atdl4net/Atdl4net.csproj.nuspec
     
 artifacts:
     - path: '*.nupkg'

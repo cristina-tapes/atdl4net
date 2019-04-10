@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Atdl4net</id>
+    <version>1.0.0</version>
+    <authors>Ullink</authors>
+    <owners></owners>
+    <projectUrl>https://github.com/Ullink/atdl4net</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Atdl4net - .NET Framework v4.6.2 Version</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags></tags>
+  </metadata>
+  <files>
+	<file src="..\bin\Release\*.*" target="lib\net462"/>
+  </files>
+</package>
