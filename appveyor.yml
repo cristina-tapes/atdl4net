@@ -17,7 +17,7 @@ artifacts:
 
 deploy:
     - provider: NuGet
-      symbol_server: https://ci.appveyor.com/nuget/cristina-tapes-7qs0g4us7vw4/api/v2/package
+      symbol_server: https://ci.appveyor.com/nuget/atdl4net-p040g5yrxh7u/api/v2/package
       api_key:
-          secure: x8zjwsEfIfTB19AgjAduiEL4o36mvEWhCKP0GRKtsG0=
+          secure: rnV9nOL85Gf7/oOffEivmg5axEXoJx9zX7NrBisN8io=
       artifact: /.*\.nupkg/
