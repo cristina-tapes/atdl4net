@@ -8,9 +8,9 @@
 //
 //      This file is part of Atdl4net.
 //
-//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public 
+//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public
 //      License as published by the Free Software Foundation, either version 2.1 of the License, or (at your option) any later version.
-// 
+//
 //      Atdl4net is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 //      of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
 //
@@ -48,7 +48,7 @@ namespace Atdl4net.Utility
             if (!typeof(T).IsEnum)
                 throw ThrowHelper.New<InvalidOperationException>(ExceptionContext, InternalErrors.InvalidUseOfParseAsEnum);
 
-#if NET_40
+#if NET462
             if (!Enum.TryParse<T>(value, true, out result))
                 throw ThrowHelper.New<ArgumentException>(ExceptionContext, ErrorMessages.InvalidValueEnumParseFailure, value, typeof(T).Name);
 #else
@@ -58,7 +58,7 @@ namespace Atdl4net.Utility
             }
             catch (ArgumentException ex)
             {
-                // We don't Rethrow here as we want the error message (that may be shown to the user) to be consistent between the .NET 3.5 
+                // We don't Rethrow here as we want the error message (that may be shown to the user) to be consistent between the .NET 3.5
                 // and .NET 4.0 implementations.
                 throw ThrowHelper.New<ArgumentException>(ExceptionContext, ex, ErrorMessages.InvalidValueEnumParseFailure, value, typeof(T).Name);
             }

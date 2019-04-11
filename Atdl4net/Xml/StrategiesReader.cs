@@ -56,7 +56,7 @@ namespace Atdl4net.Xml
             _log.Debug("Attempting to load strategies from stream.");
 
             XDocument document;
-#if NET_40
+#if NET462
             document = XDocument.Load(stream, LoadOptions.SetLineInfo | LoadOptions.PreserveWhitespace);
 #else
             using (XmlReader reader = XmlReader.Create(stream))

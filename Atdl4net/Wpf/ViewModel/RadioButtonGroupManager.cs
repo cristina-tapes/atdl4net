@@ -8,9 +8,9 @@
 //
 //      This file is part of Atdl4net.
 //
-//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public 
+//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public
 //      License as published by the Free Software Foundation, either version 2.1 of the License, or (at your option) any later version.
-// 
+//
 //      Atdl4net is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 //      of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
 //
@@ -19,14 +19,14 @@
 //
 #endregion
 
-#if !NET_40
+#if !NET462
 using System.Collections.Generic;
 
 namespace Atdl4net.Wpf.ViewModel
 {
     /// <summary>
-    /// Manages the state of WPF radio buttons within a radio button group - needed only for .NET Framework v3.5 to 
-    /// workaround a bug in that version of the Framework that allows more than one WPF RadioButton in a radio button 
+    /// Manages the state of WPF radio buttons within a radio button group - needed only for .NET Framework v3.5 to
+    /// workaround a bug in that version of the Framework that allows more than one WPF RadioButton in a radio button
     /// group to selected at a time.
     /// </summary>
     public class RadioButtonGroupManager
