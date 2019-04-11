@@ -8,9 +8,9 @@
 //
 //      This file is part of Atdl4net.
 //
-//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public 
+//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public
 //      License as published by the Free Software Foundation, either version 2.1 of the License, or (at your option) any later version.
-// 
+//
 //      Atdl4net is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 //      of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
 //
@@ -35,7 +35,7 @@ using Atdl4net.Utility;
 using Atdl4net.Validation;
 using Common.Logging;
 
-#if !NET_40
+#if !NET462
 using Atdl4net.Model.Controls;
 #endif
 
@@ -110,7 +110,7 @@ namespace Atdl4net.Wpf.ViewModel
         public event EventHandler<ValidationStateChangedEventArgs> ValidationStateChanged;
 
         /// <summary>
-        /// Initializes a new ControlViewModel using the supplied <see cref="Control_t"/> as underlying control and the 
+        /// Initializes a new ControlViewModel using the supplied <see cref="Control_t"/> as underlying control and the
         /// supplied <see cref="IParameter"/> as referenced parameter.
         /// </summary>
         /// <param name="control">Underlying Control_t for this ControlViewModel.</param>
@@ -146,8 +146,8 @@ namespace Atdl4net.Wpf.ViewModel
 
             ControlViewModel controlViewModel;
 
-#if !NET_40
-            // This is to workaround a bug in .NET Framework 3.5 where it is possible for more than one radio button in a 
+#if !NET462
+            // This is to workaround a bug in .NET Framework 3.5 where it is possible for more than one radio button in a
             // group to be checked at a time.
             if (control is RadioButton_t)
                 controlViewModel = new RadioButtonViewModel(control as RadioButton_t, referencedParameter);
@@ -285,7 +285,7 @@ namespace Atdl4net.Wpf.ViewModel
         public bool IsValid { get { return _validationState.CurrentState; } }
 
         /// <summary>
-        /// Used to indicate whether the rendering process is in operation, in order to disable certain activities during 
+        /// Used to indicate whether the rendering process is in operation, in order to disable certain activities during
         /// rendering.
         /// </summary>
         public bool IsRenderInProgress { set { _renderInProgress = value; } }
@@ -366,7 +366,7 @@ namespace Atdl4net.Wpf.ViewModel
         /// Notifies interested parties that a value change has been fully processed.
         /// </summary>
         /// <remarks>We have to use a separate event (as opposed to re-using the ValueChanged event)
-        /// because we cannot guarantee what order event subscribers will be called, and this 
+        /// because we cannot guarantee what order event subscribers will be called, and this
         /// notification must happen once the value change has been completely processed.</remarks>
         public virtual void OnValueChangeCompleted()
         {

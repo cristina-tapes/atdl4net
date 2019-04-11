@@ -8,9 +8,9 @@
 //
 //      This file is part of Atdl4net.
 //
-//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public 
+//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public
 //      License as published by the Free Software Foundation, either version 2.1 of the License, or (at your option) any later version.
-// 
+//
 //      Atdl4net is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 //      of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
 //
@@ -46,9 +46,9 @@ namespace Atdl4net.Wpf.View.DefaultRendering
                 if (!string.IsNullOrEmpty(control.Id))
                     writer.WriteAttribute(WpfXmlWriterAttribute.Name, id);
 
-                // For .NET 4.0 we can rely on GroupName, but for .NET 3.5 we have to provide our own mechanism to 
+                // For .NET 4.0 we can rely on GroupName, but for .NET 3.5 we have to provide our own mechanism to
                 // ensure that only one radio button is enabled at a time
-#if NET_40
+#if NET462
                 if (!string.IsNullOrEmpty(control.RadioGroup))
                     writer.WriteAttribute(WpfXmlWriterAttribute.GroupName, WpfControlRenderer.CleanName(control.RadioGroup));
 #endif

@@ -8,9 +8,9 @@
 //
 //      This file is part of Atdl4net.
 //
-//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public 
+//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public
 //      License as published by the Free Software Foundation, either version 2.1 of the License, or (at your option) any later version.
-// 
+//
 //      Atdl4net is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 //      of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
 //
@@ -19,7 +19,7 @@
 //
 #endregion
 
-#if !NET_40
+#if !NET462
 using Atdl4net.Model.Controls;
 using Atdl4net.Model.Elements.Support;
 
@@ -27,7 +27,7 @@ namespace Atdl4net.Wpf.ViewModel
 {
     /// <summary>
     /// View model class for <see cref="RadioButton_t"/> - needed only for .NET Framework v3.5 to workaround a bug
-    /// in that version of the Framework that allows more than one WPF RadioButton in a radio button group to 
+    /// in that version of the Framework that allows more than one WPF RadioButton in a radio button group to
     /// selected at a time.
     /// </summary>
     public class RadioButtonViewModel : ControlViewModel
@@ -43,7 +43,7 @@ namespace Atdl4net.Wpf.ViewModel
         /// </summary>
         /// <param name="control">Underlying <see cref="RadioButton_t"/> for this RadioButtonViewModel.</param>
         /// <param name="referencedParameter">Parameter that the RadioButton_t refers to.</param>
-        public RadioButtonViewModel(RadioButton_t control, IParameter referencedParameter) 
+        public RadioButtonViewModel(RadioButton_t control, IParameter referencedParameter)
             :base(control, referencedParameter)
         {
         }
@@ -54,7 +54,7 @@ namespace Atdl4net.Wpf.ViewModel
         public override object UiValue
         {
             get { return base.UiValue; }
-            
+
             set
             {
                 base.UiValue = value;

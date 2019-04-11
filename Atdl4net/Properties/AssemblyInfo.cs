@@ -22,12 +22,12 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
+// General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Atdl4net")]
-#if NET_40
-[assembly: AssemblyDescription("Atdl4net - .NET Framework v4.0 Version")]
+#if NET462
+[assembly: AssemblyDescription("Atdl4net - .NET Framework v4.6.2 Version")]
 #else
 [assembly: AssemblyDescription("Atdl4net - .NET Framework v3.5 Version")]
 #endif
@@ -50,9 +50,9 @@ using System.Runtime.InteropServices;
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
-//      Minor Version 
+//      Minor Version
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2.0.0.5")]
-[assembly: AssemblyFileVersion("2.0.0.5")]
+[assembly: AssemblyVersion("4.0.0.0")]
+[assembly: AssemblyFileVersion("4.0.0.0")]

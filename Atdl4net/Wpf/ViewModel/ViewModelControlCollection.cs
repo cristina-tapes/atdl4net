@@ -8,9 +8,9 @@
 //
 //      This file is part of Atdl4net.
 //
-//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public 
+//      Atdl4net is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public
 //      License as published by the Free Software Foundation, either version 2.1 of the License, or (at your option) any later version.
-// 
+//
 //      Atdl4net is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 //      of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
 //
@@ -26,20 +26,20 @@ using Atdl4net.Model.Elements;
 using Atdl4net.Notification;
 using Atdl4net.Utility;
 using Common.Logging;
-#if !NET_40
+#if !NET462
 using Atdl4net.Model.Controls;
 #endif
 
 namespace Atdl4net.Wpf.ViewModel
 {
     /// <summary>
-    /// Collection of <see cref="ControlViewModel"/>s, part of the Atdl4net ViewModel. 
+    /// Collection of <see cref="ControlViewModel"/>s, part of the Atdl4net ViewModel.
     /// </summary>
     public class ViewModelControlCollection : KeyedCollection<string, ControlViewModel>, IDisposable
     {
         private static readonly ILog _log = LogManager.GetLogger("Atdl4net.Wpf.ViewModel");
 
-#if !NET_40
+#if !NET462
         #region Special support for RadioButtons on .NET 3.5
 
         private class RadioButtonGroupManagerCollection : KeyedCollection<string, RadioButtonGroupManager>
@@ -73,7 +73,7 @@ namespace Atdl4net.Wpf.ViewModel
         public event EventHandler<ValidationStateChangedEventArgs> ValidationStateChanged;
 
         /// <summary>
-        /// Initializes a new <see cref="ViewModelControlCollection"/> 
+        /// Initializes a new <see cref="ViewModelControlCollection"/>
         /// </summary>
         /// <param name="strategy">Strategy that the underlying controls belong to.</param>
         /// <param name="mode">Data entry mode.</param>
@@ -89,7 +89,7 @@ namespace Atdl4net.Wpf.ViewModel
                 controlViewModel.ValidationStateChanged += new EventHandler<ValidationStateChangedEventArgs>(ControlValidationStateChanged);
 
                 // Special treatment for radio buttons under Framework 3.5
-#if !NET_40
+#if !NET462
                 if (control is RadioButton_t)
                     RegisterRadioButton(control as RadioButton_t, controlViewModel as RadioButtonViewModel);
 #endif
@@ -155,7 +155,7 @@ namespace Atdl4net.Wpf.ViewModel
                 e.Control.UpdateParameterValue();
         }
 
-#if !NET_40
+#if !NET462
         private void RegisterRadioButton(RadioButton_t radioButton, RadioButtonViewModel controlViewModel)
         {
             string groupName = radioButton.RadioGroup;
@@ -190,8 +190,8 @@ namespace Atdl4net.Wpf.ViewModel
         /// Cleans up when this instance of FnsPreprocessor is no longer required.
         /// </summary>
         /// <param name="disposing">True if this object is being disposed.</param>
-        /// <remarks>Required because _messageProcessor is a static member and during test cases, we cannot guarantee 
-        /// when the finalizer will run.  An explicit call to Dispose() at the end of each test ensures that we start 
+        /// <remarks>Required because _messageProcessor is a static member and during test cases, we cannot guarantee
+        /// when the finalizer will run.  An explicit call to Dispose() at the end of each test ensures that we start
         /// each new test with a clean object.</remarks>
         protected virtual void Dispose(bool disposing)
         {
