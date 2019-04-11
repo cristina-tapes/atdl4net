@@ -22,7 +22,7 @@ namespace Atdl4net.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class HumanReadableTypeNames {
+    internal class HumanReadableTypeNames {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Atdl4net.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Atdl4net.Resources.HumanReadableTypeNames", typeof(HumanReadableTypeNames).Assembly);
@@ -51,7 +51,7 @@ namespace Atdl4net.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to * = Mandatory.
         /// </summary>
-        public static string AddMandatoryFieldLabel {
+        internal static string AddMandatoryFieldLabel {
             get {
                 return ResourceManager.GetString("AddMandatoryFieldLabel", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to boolean value.
         /// </summary>
-        public static string BooleanType {
+        internal static string BooleanType {
             get {
                 return ResourceManager.GetString("BooleanType", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to char value.
         /// </summary>
-        public static string CharType {
+        internal static string CharType {
             get {
                 return ResourceManager.GetString("CharType", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to country code.
         /// </summary>
-        public static string CountryType {
+        internal static string CountryType {
             get {
                 return ResourceManager.GetString("CountryType", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to currency.
         /// </summary>
-        public static string CurrencyType {
+        internal static string CurrencyType {
             get {
                 return ResourceManager.GetString("CurrencyType", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to data value.
         /// </summary>
-        public static string DataType {
+        internal static string DataType {
             get {
                 return ResourceManager.GetString("DataType", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to date.
         /// </summary>
-        public static string DateType {
+        internal static string DateType {
             get {
                 return ResourceManager.GetString("DateType", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to exchange code.
         /// </summary>
-        public static string ExchangeType {
+        internal static string ExchangeType {
             get {
                 return ResourceManager.GetString("ExchangeType", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to language.
         /// </summary>
-        public static string LanguageType {
+        internal static string LanguageType {
             get {
                 return ResourceManager.GetString("LanguageType", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to month-year value.
         /// </summary>
-        public static string MonthYearType {
+        internal static string MonthYearType {
             get {
                 return ResourceManager.GetString("MonthYearType", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to number.
         /// </summary>
-        public static string NumericType {
+        internal static string NumericType {
             get {
                 return ResourceManager.GetString("NumericType", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to string.
         /// </summary>
-        public static string StringType {
+        internal static string StringType {
             get {
                 return ResourceManager.GetString("StringType", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to tenor value.
         /// </summary>
-        public static string TenorType {
+        internal static string TenorType {
             get {
                 return ResourceManager.GetString("TenorType", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to date/time.
         /// </summary>
-        public static string TimestampType {
+        internal static string TimestampType {
             get {
                 return ResourceManager.GetString("TimestampType", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace Atdl4net.Resources {
         /// <summary>
         ///   Looks up a localized string similar to time.
         /// </summary>
-        public static string TimeType {
+        internal static string TimeType {
             get {
                 return ResourceManager.GetString("TimeType", resourceCulture);
             }
